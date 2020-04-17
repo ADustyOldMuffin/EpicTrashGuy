@@ -121,7 +121,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &868702242325894851
+--- !u!1001 &651331209
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -186,7 +186,7 @@ PrefabInstance:
     - target: {fileID: 868702242623629973, guid: 20ba5e7350ff50d4db6929df3bceb699,
         type: 3}
       propertyPath: m_Name
-      value: _app
+      value: __app
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20ba5e7350ff50d4db6929df3bceb699, type: 3}
