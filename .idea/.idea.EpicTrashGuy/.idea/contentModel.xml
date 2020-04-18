@@ -17,8 +17,10 @@
           <e p="DevPreload.cs" t="Include" />
           <e p="Game.cs" t="Include" />
           <e p="Imp.cs" t="Include" />
+          <e p="IngameMouse.cs" t="Include" />
           <e p="Interfaces.cs" t="Include" />
           <e p="Player" t="Include">
+            <e p="AttackDirection.cs" t="Include" />
             <e p="DamageEnemies.cs" t="Include" />
             <e p="PlayerCollider.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />

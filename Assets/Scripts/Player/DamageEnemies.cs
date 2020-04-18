@@ -13,7 +13,5 @@ public class DamageEnemies : MonoBehaviour
 
         ITakeDamage canDamage = target.GetComponent<ITakeDamage>();
         canDamage?.Damage(damage);
-        
-        Debug.Log("Fire");
     }
 }
