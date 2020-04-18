@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 162816dbb65085a4ab7b417d1b4ad397
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: SF Junk Culture Condensed
+  fontNames:
+  - SF Junk Culture Condensed
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b39cda1178db1bf47b4ff98c83cf78a5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
