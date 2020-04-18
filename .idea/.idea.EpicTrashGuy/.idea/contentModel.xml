@@ -9,14 +9,18 @@
         <e p="InputMaster.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="Constants" t="Include">
+            <e p="EnemyState.cs" t="Include" />
             <e p="Scenes.cs" t="Include" />
           </e>
           <e p="DDOL.cs" t="Include" />
           <e p="DevPreload.cs" t="Include" />
           <e p="Game.cs" t="Include" />
+          <e p="Imp.cs" t="Include" />
           <e p="Player" t="Include">
+            <e p="PlayerCollider.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
           </e>
+          <e p="Projectile.cs" t="Include" />
           <e p="SceneController.cs" t="Include" />
         </e>
       </e>
