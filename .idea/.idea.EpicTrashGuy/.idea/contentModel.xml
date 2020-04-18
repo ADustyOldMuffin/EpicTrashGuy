@@ -9,6 +9,9 @@
           <e p="BaseClasses" t="Include">
             <e p="BaseHealthSystem.cs" t="Include" />
           </e>
+          <e p="Camera" t="Include">
+            <e p="MainMenuDolly.cs" t="Include" />
+          </e>
           <e p="Constants" t="Include">
             <e p="EnemyState.cs" t="Include" />
             <e p="Scenes.cs" t="Include" />
@@ -19,6 +22,10 @@
           <e p="Imp.cs" t="Include" />
           <e p="IngameMouse.cs" t="Include" />
           <e p="Interfaces.cs" t="Include" />
+          <e p="LevelLoader.cs" t="Include" />
+          <e p="Menus" t="Include">
+            <e p="MainMenu.cs" t="Include" />
+          </e>
           <e p="Player" t="Include">
             <e p="AttackDirection.cs" t="Include" />
             <e p="DamageEnemies.cs" t="Include" />
