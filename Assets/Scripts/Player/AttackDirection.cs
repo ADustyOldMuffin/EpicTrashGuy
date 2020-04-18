@@ -19,11 +19,13 @@ public class AttackDirection : MonoBehaviour
 
     private Camera _cam;
     
-    [Header("Attacks")] [SerializeField]
-    private GameObject rangeAttack;
+    [Header("Attacks")] 
+    [SerializeField] private GameObject rangeAttack, meleeAttack;
 
-    public float _degree = 0;
-    public float test;
+    [SerializeField] private float _degree = 0;
+     
+    
+    
     
     void Awake()
     {
@@ -32,7 +34,7 @@ public class AttackDirection : MonoBehaviour
 
     private void Start()
     {
-        _playersAttackStat = PlayersAttackStat.range;
+        _playersAttackStat = PlayersAttackStat.melee;
     }
 
     void Update()
@@ -41,14 +43,7 @@ public class AttackDirection : MonoBehaviour
         _direction = _mousePos - transform.position;
         _direction = _direction.normalized;
 
-        if (_direction.x < 0)
-        {
-            _degree = 90 - Mathf.Asin(_direction.y) * Mathf.Rad2Deg;
-        }
-        else
-        {
-            _degree = Mathf.Asin(_direction.y) * Mathf.Rad2Deg + 270;
-        }
+
         
         
         
@@ -58,21 +53,44 @@ public class AttackDirection : MonoBehaviour
             switch (_playersAttackStat)
             {
                 case (PlayersAttackStat.melee):
-                
+                    _degree = Mathf.Asin(_direction.y) * Mathf.Rad2Deg;
+                    
+                    if (_degree > 45) //Up
+                    {
+                        meleeAttack.transform.position = transform.position + new Vector3(0, 3, 0);
+                    }
+                    else if (_degree < -45) //Down
+                    {
+                        meleeAttack.transform.position = transform.position + new Vector3(0, -3, 0);
+                    }
+                    else if (_degree > -45 && _degree < 45)
+                    {
+                        if (_direction.x < 0) //Left
+                        {
+                            meleeAttack.transform.position = transform.position + new Vector3(-3, 0, 0);
+                        }
+                        else //Right
+                        {
+                            meleeAttack.transform.position = transform.position + new Vector3(3, 0, 0);
+                        }
+                    }
+                    
+                    
                     break;
                 case (PlayersAttackStat.range):
+                    if (_direction.x < 0)
+                    {
+                        _degree = 90 - Mathf.Asin(_direction.y) * Mathf.Rad2Deg;
+                    }
+                    else
+                    {
+                        _degree = Mathf.Asin(_direction.y) * Mathf.Rad2Deg + 270;
+                    }
+                    
                     Quaternion _quaternionDir = Quaternion.Euler(0, 0, _degree);
                     Instantiate(rangeAttack, transform.position, _quaternionDir);
                     break;
             }
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, 1f);
-        Gizmos.color = Color.magenta;
-        //Gizmos.DrawLine(transform.position, transform.position + (Vector3)_direction);
     }
 }
