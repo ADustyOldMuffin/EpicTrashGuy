@@ -49,4 +49,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIHeart: {fileID: 8004605375590683523, guid: f8e476d05fc0b844aaadd5557ae92bfa, type: 3}
-  wide: 25
+  wide: 60
