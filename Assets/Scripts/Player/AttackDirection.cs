@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayersAttackStat
+{
+    melee,
+    range
+}
+
 public class AttackDirection : MonoBehaviour
 {
-    private enum PlayersAttackStat
-    {
-        melee,
-        range
-    }
+
 
     private PlayersAttackStat _playersAttackStat;
 
@@ -20,6 +22,7 @@ public class AttackDirection : MonoBehaviour
     private Camera _cam;
 
     [Header("Attacks")] 
+    [SerializeField] private ShowPlayersAttackState showPlayersAttackState;
     [SerializeField] private GameObject rangeAttack; 
     [SerializeField] private GameObject meleeAttack;
     [SerializeField] private float _degree = 0;
@@ -35,7 +38,8 @@ public class AttackDirection : MonoBehaviour
 
     private void Start()
     {
-        _playersAttackStat = PlayersAttackStat.melee;
+        _playersAttackStat = PlayersAttackStat.range;
+        showPlayersAttackState.ChangeStateSprite(_playersAttackStat);
     }
 
     void Update()
@@ -50,6 +54,7 @@ public class AttackDirection : MonoBehaviour
             if (_playersAttackStat == PlayersAttackStat.melee)
             {
                 _playersAttackStat = PlayersAttackStat.range;
+                showPlayersAttackState.ChangeStateSprite(_playersAttackStat);
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -57,6 +62,7 @@ public class AttackDirection : MonoBehaviour
             if (_playersAttackStat == PlayersAttackStat.range)
             {
                 _playersAttackStat = PlayersAttackStat.melee;
+                showPlayersAttackState.ChangeStateSprite(_playersAttackStat);
             }
         }
 
