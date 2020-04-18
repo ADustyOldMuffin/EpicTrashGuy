@@ -69,28 +69,6 @@ public class Imp : MonoBehaviour
             currentRangeCoolDown -= Time.fixedDeltaTime;
     }
 
-    private void OnDrawGizmos()
-    {
-        var spot = transform.position;
-        
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(spot, noticeDistance);
-        
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(spot, rangedAttackDistance);
-        
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(spot, chaseDistance);
-
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(spot, meleeAttackDistance);
-
-        Gizmos.color = Color.red;
-        
-        Gizmos.DrawLine(spot, moveToPosition);
-
-    }
-    
     private EnemyState DetermineState(float distanceToPlayer)
     {
         var state = EnemyState.Idle;
