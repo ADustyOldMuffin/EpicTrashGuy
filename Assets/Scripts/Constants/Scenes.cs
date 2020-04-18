@@ -5,9 +5,13 @@ namespace Constants
     public enum Scenes
     {
         [SceneName("_prescene")]
-        Preload,
+        Preload = 0,
+        [SceneName("MainMenu")]
+        MainMenu = 1,
+        [SceneName("StreetBattle")]
+        StreetBattle = 2,
         [SceneName("TestingScene")]
-        Testing
+        Testing = 3
     }
     
     public static class GameSceneExtensions

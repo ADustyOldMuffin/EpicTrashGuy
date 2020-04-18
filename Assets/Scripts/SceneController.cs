@@ -7,8 +7,21 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    private void Awake()
+    public Animator transition;
+    public float transitionTime = 1.0f;
+    private static readonly int Start = Animator.StringToHash("Start");
+
+    public void ChangeScene(Scenes scene)
     {
-        SceneManager.LoadScene(Scenes.Testing.GetSceneName(), LoadSceneMode.Single);
+        StartCoroutine(LoadLevel(scene));
+    }
+
+    private IEnumerator LoadLevel(Scenes scene)
+    {
+        transition.SetTrigger(Start);
+        
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(scene.GetSceneName(), LoadSceneMode.Single);
     }
 }
