@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1232016349836093289}
   m_Layer: 0
   m_Name: ImpRangedProjectile
-  m_TagString: damaging
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,6 +115,7 @@ MonoBehaviour:
   moveSpeed: 1500
   travelTime: 5
   target: {x: 0, y: 0, z: 0}
+  Damage: 1
 --- !u!50 &1232016349836093289
 Rigidbody2D:
   serializedVersion: 4

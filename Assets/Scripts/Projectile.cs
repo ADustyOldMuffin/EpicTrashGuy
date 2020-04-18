@@ -9,7 +9,9 @@ public class Projectile : MonoBehaviour
     public float travelTime;
     public Vector3 target;
 
-    // Update is called once per frame
+    public int Damage = 1;
+    
+    
     private void FixedUpdate()
     {
         //transform.position = Vector2.MoveTowards(transform.position, Vector2.up, moveSpeed * Time.deltaTime);
@@ -18,5 +20,18 @@ public class Projectile : MonoBehaviour
         
         if(travelTime <= 0)
             Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        var target = other.gameObject;
+
+        if (!target.CompareTag("Enemies"))
+        {
+            ITakeDamage canDamage = target.GetComponent<ITakeDamage>();
+            canDamage?.Damage(Damage);
+            
+            Destroy(gameObject);
+        }
     }
 }
