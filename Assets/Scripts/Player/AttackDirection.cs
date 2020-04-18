@@ -28,9 +28,9 @@ public class AttackDirection : MonoBehaviour
     [SerializeField] private float _degree = 0;
     [SerializeField] private float leftRightDistanceToPlayer = 3.7f, upDownDistanceToPLayer = 4.5f;
     [SerializeField] private float attackTime = .1f;
-    
-    
-    
+
+
+
     void Awake()
     {
         _cam = Camera.main;
@@ -78,13 +78,13 @@ public class AttackDirection : MonoBehaviour
                     if (_degree > 45) //Up
                     {
                         meleeAttack.transform.position = transform.position + new Vector3(0, upDownDistanceToPLayer, 0);
-                        meleeAttack.transform.localScale = new Vector3(6.5f, 4, 1);
+                        meleeAttack.transform.localScale = new Vector3(50, 8, 1);
                         StartCoroutine(HitBoxAttack());
                     }
                     else if (_degree < -45) //Down
                     {
                         meleeAttack.transform.position = transform.position + new Vector3(0, -upDownDistanceToPLayer, 0);
-                        meleeAttack.transform.localScale = new Vector3(6.5f, 4, 1);
+                        meleeAttack.transform.localScale = new Vector3(50, 8, 1);
                         StartCoroutine(HitBoxAttack());
                     }
                     else if (_degree > -45 && _degree < 45)
@@ -92,13 +92,13 @@ public class AttackDirection : MonoBehaviour
                         if (_direction.x < 0) //Left
                         {
                             meleeAttack.transform.position = transform.position + new Vector3(-leftRightDistanceToPlayer, 0, 0);
-                            meleeAttack.transform.localScale = new Vector3(4, 6.5f, 1);
+                            meleeAttack.transform.localScale = new Vector3(8, 50, 1);
                             StartCoroutine(HitBoxAttack());
                         }
                         else //Right
                         {
                             meleeAttack.transform.position = transform.position + new Vector3(leftRightDistanceToPlayer, 0, 0);
-                            meleeAttack.transform.localScale = new Vector3(4, 6.5f, 1);
+                            meleeAttack.transform.localScale = new Vector3(8, 50, 1);
                             StartCoroutine(HitBoxAttack());
                         }
                     }

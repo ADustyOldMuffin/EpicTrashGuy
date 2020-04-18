@@ -6,6 +6,7 @@ TagManager:
   tags:
   - damaging
   - Enemies
+  - PlayerProjectile
   layers:
   - Default
   - TransparentFX

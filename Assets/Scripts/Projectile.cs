@@ -26,6 +26,7 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         var target = other.gameObject;
+        Debug.Log(other.gameObject.tag);
 
         if (!target.CompareTag("Enemies"))
         {
@@ -39,6 +40,7 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         var target = other.gameObject;
+        Debug.Log(other.gameObject.tag);
 
         if (!target.CompareTag("Enemies"))
         {

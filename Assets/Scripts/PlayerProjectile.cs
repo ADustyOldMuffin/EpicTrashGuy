@@ -6,6 +6,7 @@ public class PlayerProjectile : MonoBehaviour
 {
     private Rigidbody2D _rb;
     [SerializeField] private float speed = 8;
+    [SerializeField] private float lifetime = 10;
     
     
     void Awake()
@@ -17,5 +18,10 @@ public class PlayerProjectile : MonoBehaviour
     void FixedUpdate()
     {
         _rb.velocity = transform.up * speed;
+
+        lifetime -= Time.fixedDeltaTime;
+        
+        if(lifetime <= 0)
+            Destroy(gameObject);
     }
 }
