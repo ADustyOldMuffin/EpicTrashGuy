@@ -10,13 +10,13 @@ public class ShowPlayersAttackState : MonoBehaviour
 
      public void ChangeStateSprite(PlayersAttackStat changeToWhat)
      {
-         if (changeToWhat == PlayersAttackStat.melee)
+         if (changeToWhat == PlayersAttackStat.range)
          {
              rangeSymbol.SetActive(true);
              meleeSymbol.SetActive(false);
          }
 
-         if (changeToWhat == PlayersAttackStat.range)
+         if (changeToWhat == PlayersAttackStat.melee)
          {
              meleeSymbol.SetActive(true);
              rangeSymbol.SetActive(false);

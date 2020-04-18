@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/_prescene.unity
     guid: 5e5ff1318d841c9479105003fac6456b
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: d8e4b6e3f51b11a478ed539f542263eb
+  - enabled: 1
+    path: Assets/Scenes/StreetBattle.unity
+    guid: cf1a3a41fe3b2e54899de5fbbe3ab2ef
+  - enabled: 1
     path: Assets/Scenes/TestingScene.unity
     guid: 1cc9fc37f0b3332458634efe15057490
   m_configObjects: {}

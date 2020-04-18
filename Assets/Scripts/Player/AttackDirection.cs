@@ -38,7 +38,7 @@ public class AttackDirection : MonoBehaviour
 
     private void Start()
     {
-        _playersAttackStat = PlayersAttackStat.range;
+        _playersAttackStat = PlayersAttackStat.melee;
         showPlayersAttackState.ChangeStateSprite(_playersAttackStat);
     }
 

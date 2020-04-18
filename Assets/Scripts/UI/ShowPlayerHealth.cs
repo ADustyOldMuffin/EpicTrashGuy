@@ -6,14 +6,15 @@ public class ShowPlayerHealth : MonoBehaviour
 {
     [SerializeField] private GameObject UIHeart;
 
-    [SerializeField] private float wide = 25;
+    [SerializeField] private float wide = 25, yPlacement = -10;
+    
     
 
     public void HealthSetup(int maxHealth)
     {
         for (int i = 0; i < maxHealth; i++)
         {
-            Vector3 pos = new Vector3(wide * i + wide / 2, -wide / 2, 0) + transform.position;
+            Vector3 pos = new Vector3(wide * i + wide / 2, yPlacement, 0) + transform.position;
             var spawn = Instantiate(UIHeart, pos, Quaternion.identity);
             spawn.transform.SetParent(transform);
         }
