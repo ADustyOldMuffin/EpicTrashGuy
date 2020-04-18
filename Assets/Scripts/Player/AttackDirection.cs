@@ -18,12 +18,13 @@ public class AttackDirection : MonoBehaviour
     private Vector3 _mousePos;
 
     private Camera _cam;
-    
-    [Header("Attacks")] 
-    [SerializeField] private GameObject rangeAttack, meleeAttack;
 
+    [Header("Attacks")] 
+    [SerializeField] private GameObject rangeAttack; 
+    [SerializeField] private GameObject meleeAttack;
     [SerializeField] private float _degree = 0;
-     
+    [SerializeField] private float leftRightDistanceToPlayer = 3.7f, upDownDistanceToPLayer = 4.5f;
+    [SerializeField] private float attackTime = .1f;
     
     
     
@@ -42,10 +43,23 @@ public class AttackDirection : MonoBehaviour
         _mousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
         _direction = _mousePos - transform.position;
         _direction = _direction.normalized;
-
-
         
-        
+        //Change attack state
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (_playersAttackStat == PlayersAttackStat.melee)
+            {
+                _playersAttackStat = PlayersAttackStat.range;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (_playersAttackStat == PlayersAttackStat.range)
+            {
+                _playersAttackStat = PlayersAttackStat.melee;
+            }
+        }
+
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -57,21 +71,29 @@ public class AttackDirection : MonoBehaviour
                     
                     if (_degree > 45) //Up
                     {
-                        meleeAttack.transform.position = transform.position + new Vector3(0, 3, 0);
+                        meleeAttack.transform.position = transform.position + new Vector3(0, upDownDistanceToPLayer, 0);
+                        meleeAttack.transform.localScale = new Vector3(6.5f, 4, 1);
+                        StartCoroutine(HitBoxAttack());
                     }
                     else if (_degree < -45) //Down
                     {
-                        meleeAttack.transform.position = transform.position + new Vector3(0, -3, 0);
+                        meleeAttack.transform.position = transform.position + new Vector3(0, -upDownDistanceToPLayer, 0);
+                        meleeAttack.transform.localScale = new Vector3(6.5f, 4, 1);
+                        StartCoroutine(HitBoxAttack());
                     }
                     else if (_degree > -45 && _degree < 45)
                     {
                         if (_direction.x < 0) //Left
                         {
-                            meleeAttack.transform.position = transform.position + new Vector3(-3, 0, 0);
+                            meleeAttack.transform.position = transform.position + new Vector3(-leftRightDistanceToPlayer, 0, 0);
+                            meleeAttack.transform.localScale = new Vector3(4, 6.5f, 1);
+                            StartCoroutine(HitBoxAttack());
                         }
                         else //Right
                         {
-                            meleeAttack.transform.position = transform.position + new Vector3(3, 0, 0);
+                            meleeAttack.transform.position = transform.position + new Vector3(leftRightDistanceToPlayer, 0, 0);
+                            meleeAttack.transform.localScale = new Vector3(4, 6.5f, 1);
+                            StartCoroutine(HitBoxAttack());
                         }
                     }
                     
@@ -92,5 +114,12 @@ public class AttackDirection : MonoBehaviour
                     break;
             }
         }
+    }
+
+    IEnumerator HitBoxAttack()
+    {
+        meleeAttack.SetActive(true);
+        yield return new WaitForSeconds(attackTime);
+        meleeAttack.SetActive(false);
     }
 }
