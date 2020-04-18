@@ -8,7 +8,6 @@ public class IngameMouse : MonoBehaviour
     
     void Awake()
     {
-        //Cursor.visible = false;
         Cursor.SetCursor(curserArrow, Vector2.zero, CursorMode.ForceSoftware);
     }
 

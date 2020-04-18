@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
@@ -23,6 +24,19 @@ public class Projectile : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other)
+    {
+        var target = other.gameObject;
+
+        if (!target.CompareTag("Enemies"))
+        {
+            ITakeDamage canDamage = target.GetComponent<ITakeDamage>();
+            canDamage?.Damage(Damage);
+            
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         var target = other.gameObject;
 

@@ -28,6 +28,7 @@
             <e p="PlayersHealth.cs" t="Include" />
             <e p="TestAttack.cs" t="Include" />
           </e>
+          <e p="PlayerProjectile.cs" t="Include" />
           <e p="Projectile.cs" t="Include" />
           <e p="SceneController.cs" t="Include" />
         </e>
