@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject downAttack;
     [SerializeField] private GameObject rightAttack;
     [SerializeField] private GameObject leftAttack;
+    [SerializeField] private GameObject cleanArea;
     [SerializeField] private GameObject firePoint;
     [SerializeField] private Rigidbody2D rangedRigidBody;
 
@@ -106,6 +107,14 @@ public class PlayerAttack : MonoBehaviour
         }
 
         _currentMeleeCooldown = meleeCooldown;
+    }
+
+    private IEnumerator OnClean(InputAction.CallbackContext context)
+    {
+        animator.Play("PlayerClean");
+        cleanArea.SetActive(true);
+        yield return new WaitForSeconds(.25f);
+        cleanArea.SetActive(false);
     }
 
     private void OnRangedAttack(InputAction.CallbackContext context)

@@ -149,6 +149,33 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Clean"",
+            ""id"": ""e8df4448-1df5-422c-a03e-32d980574f86"",
+            ""actions"": [
+                {
+                    ""name"": ""Clean"",
+                    ""type"": ""Button"",
+                    ""id"": ""841a4206-ed47-459a-979b-9e60e5b66edf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d85457cd-20d5-4cfb-9fa2-857fae406fa9"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Clean"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -178,6 +205,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Attack = asset.FindActionMap("Attack", throwIfNotFound: true);
         m_Attack_MeleeAttack = m_Attack.FindAction("MeleeAttack", throwIfNotFound: true);
         m_Attack_RangedAttack = m_Attack.FindAction("RangedAttack", throwIfNotFound: true);
+        // Clean
+        m_Clean = asset.FindActionMap("Clean", throwIfNotFound: true);
+        m_Clean_Clean = m_Clean.FindAction("Clean", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -305,6 +335,39 @@ public class @InputMaster : IInputActionCollection, IDisposable
         }
     }
     public AttackActions @Attack => new AttackActions(this);
+
+    // Clean
+    private readonly InputActionMap m_Clean;
+    private ICleanActions m_CleanActionsCallbackInterface;
+    private readonly InputAction m_Clean_Clean;
+    public struct CleanActions
+    {
+        private @InputMaster m_Wrapper;
+        public CleanActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Clean => m_Wrapper.m_Clean_Clean;
+        public InputActionMap Get() { return m_Wrapper.m_Clean; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CleanActions set) { return set.Get(); }
+        public void SetCallbacks(ICleanActions instance)
+        {
+            if (m_Wrapper.m_CleanActionsCallbackInterface != null)
+            {
+                @Clean.started -= m_Wrapper.m_CleanActionsCallbackInterface.OnClean;
+                @Clean.performed -= m_Wrapper.m_CleanActionsCallbackInterface.OnClean;
+                @Clean.canceled -= m_Wrapper.m_CleanActionsCallbackInterface.OnClean;
+            }
+            m_Wrapper.m_CleanActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Clean.started += instance.OnClean;
+                @Clean.performed += instance.OnClean;
+                @Clean.canceled += instance.OnClean;
+            }
+        }
+    }
+    public CleanActions @Clean => new CleanActions(this);
     private int m_PlayerSchemeIndex = -1;
     public InputControlScheme PlayerScheme
     {
@@ -323,5 +386,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
     {
         void OnMeleeAttack(InputAction.CallbackContext context);
         void OnRangedAttack(InputAction.CallbackContext context);
+    }
+    public interface ICleanActions
+    {
+        void OnClean(InputAction.CallbackContext context);
     }
 }

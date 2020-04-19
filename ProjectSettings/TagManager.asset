@@ -8,6 +8,7 @@ TagManager:
   - Enemies
   - PlayerProjectile
   - Hittable
+  - Trash
   layers:
   - Default
   - TransparentFX

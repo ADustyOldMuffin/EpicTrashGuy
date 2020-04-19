@@ -11,6 +11,7 @@ public class Imp : MonoBehaviour
     
     public GameObject player;
     public GameObject rangedAttackProjectile;
+    public GameObject firePoint;
     
     public float rangedAttackDistance;
     public float meleeAttackDistance;
@@ -43,6 +44,9 @@ public class Imp : MonoBehaviour
     {
         if (player == null)
             return;
+        
+        var angle = math.atan2(player.transform.position.y, player.transform.position.x) * Mathf.Rad2Deg - 90f;
+        firePoint.GetComponent<Rigidbody2D>().rotation = angle;
 
         var distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
 
@@ -57,10 +61,9 @@ public class Imp : MonoBehaviour
 
         if (state == EnemyState.RangeAttack && currentRangeCoolDown <= 0)
         {
-            var angle = math.degrees(math.atan2(transform.position.x, transform.position.y));
-            var projectile = Instantiate(rangedAttackProjectile, transform.position, new Quaternion(0,0,angle,0));
+            var projectile = Instantiate(rangedAttackProjectile, firePoint.transform.position, firePoint.transform.rotation);
             var goRb = projectile.GetComponent<Rigidbody2D>();
-            goRb.AddForce(goRb.transform.up * .1f, ForceMode2D.Impulse);
+            goRb.AddForce(goRb.transform.up * .01f, ForceMode2D.Impulse);
 
             currentRangeCoolDown = rangedCoolDown;
         }

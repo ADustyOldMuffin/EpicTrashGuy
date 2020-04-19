@@ -10,8 +10,10 @@ namespace Constants
         MainMenu = 1,
         [SceneName("StreetBattle")]
         StreetBattle = 2,
-        [SceneName("TestingScene")]
-        Testing = 3
+        [SceneName("Lost")]
+        Lost = 3,
+        [SceneName("Won")]
+        Won = 4
     }
     
     public static class GameSceneExtensions

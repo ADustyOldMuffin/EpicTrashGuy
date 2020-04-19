@@ -136,6 +136,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Clean",
+            "id": "e8df4448-1df5-422c-a03e-32d980574f86",
+            "actions": [
+                {
+                    "name": "Clean",
+                    "type": "Button",
+                    "id": "841a4206-ed47-459a-979b-9e60e5b66edf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d85457cd-20d5-4cfb-9fa2-857fae406fa9",
+                    "path": "<Keyboard>/e",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Clean",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
