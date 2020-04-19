@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseHealthSystem : MonoBehaviour, ITakeDamage
+public class BaseHealthSystem : MonoBehaviour
 {
     public int maxHealth = 1, currentHealth;
 

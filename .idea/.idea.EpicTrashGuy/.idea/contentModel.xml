@@ -19,31 +19,29 @@
             <e p="EnemyState.cs" t="Include" />
             <e p="Scenes.cs" t="Include" />
           </e>
-          <e p="DDOL.cs" t="Include" />
-          <e p="DevPreload.cs" t="Include" />
-          <e p="Game.cs" t="Include" />
-          <e p="Imp.cs" t="Include" />
-          <e p="IngameMouse.cs" t="Include" />
-          <e p="Interfaces.cs" t="Include" />
-          <e p="LevelLoader.cs" t="Include" />
+          <e p="Enemies" t="Include">
+            <e p="Imp" t="Include">
+              <e p="Imp.cs" t="Include" />
+              <e p="ImpHittable.cs" t="Include" />
+              <e p="ImpProjectile.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Hittable.cs" t="Include" />
           <e p="Menus" t="Include">
             <e p="MainMenu.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
-            <e p="AttackDirection.cs" t="Include" />
-            <e p="DamageEnemies.cs" t="Include" />
-            <e p="PlayerCollider.cs" t="Include" />
+            <e p="PlayerAttack.cs" t="Include" />
+            <e p="PlayerHit.cs" t="Include" />
+            <e p="PlayerHittable.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
-            <e p="PlayerRighedbodyMovement.cs" t="Include" />
-            <e p="PlayersHealth.cs" t="Include" />
-            <e p="TestAttack.cs" t="Include" />
+            <e p="PlayerProjectile.cs" t="Include" />
           </e>
-          <e p="PlayerProjectile.cs" t="Include" />
-          <e p="Projectile.cs" t="Include" />
           <e p="SceneController.cs" t="Include" />
-          <e p="UI" t="Include">
-            <e p="ShowPlayerHealth.cs" t="Include" />
-            <e p="ShowPlayersAttackState.cs" t="Include" />
+          <e p="Utility" t="Include">
+            <e p="DDOL.cs" t="Include" />
+            <e p="DevPreload.cs" t="Include" />
+            <e p="Game.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">

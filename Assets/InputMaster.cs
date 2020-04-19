@@ -103,6 +103,52 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Attack"",
+            ""id"": ""07be1f1c-8ef2-4d72-a520-d8c2e3b7da24"",
+            ""actions"": [
+                {
+                    ""name"": ""MeleeAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""406b7126-a825-4162-8e8a-87cf579093ec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RangedAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee911189-d4ca-4518-91e2-813c2b8da2af"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""411e9b19-3402-4b6d-9997-d1a5f50e94e6"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MeleeAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""23381f0c-be7f-4bfa-bb88-f58411df4aef"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RangedAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -128,6 +174,10 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_UpAndDown = m_Movement.FindAction("UpAndDown", throwIfNotFound: true);
         m_Movement_Sideways = m_Movement.FindAction("Sideways", throwIfNotFound: true);
+        // Attack
+        m_Attack = asset.FindActionMap("Attack", throwIfNotFound: true);
+        m_Attack_MeleeAttack = m_Attack.FindAction("MeleeAttack", throwIfNotFound: true);
+        m_Attack_RangedAttack = m_Attack.FindAction("RangedAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -214,6 +264,47 @@ public class @InputMaster : IInputActionCollection, IDisposable
         }
     }
     public MovementActions @Movement => new MovementActions(this);
+
+    // Attack
+    private readonly InputActionMap m_Attack;
+    private IAttackActions m_AttackActionsCallbackInterface;
+    private readonly InputAction m_Attack_MeleeAttack;
+    private readonly InputAction m_Attack_RangedAttack;
+    public struct AttackActions
+    {
+        private @InputMaster m_Wrapper;
+        public AttackActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MeleeAttack => m_Wrapper.m_Attack_MeleeAttack;
+        public InputAction @RangedAttack => m_Wrapper.m_Attack_RangedAttack;
+        public InputActionMap Get() { return m_Wrapper.m_Attack; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(AttackActions set) { return set.Get(); }
+        public void SetCallbacks(IAttackActions instance)
+        {
+            if (m_Wrapper.m_AttackActionsCallbackInterface != null)
+            {
+                @MeleeAttack.started -= m_Wrapper.m_AttackActionsCallbackInterface.OnMeleeAttack;
+                @MeleeAttack.performed -= m_Wrapper.m_AttackActionsCallbackInterface.OnMeleeAttack;
+                @MeleeAttack.canceled -= m_Wrapper.m_AttackActionsCallbackInterface.OnMeleeAttack;
+                @RangedAttack.started -= m_Wrapper.m_AttackActionsCallbackInterface.OnRangedAttack;
+                @RangedAttack.performed -= m_Wrapper.m_AttackActionsCallbackInterface.OnRangedAttack;
+                @RangedAttack.canceled -= m_Wrapper.m_AttackActionsCallbackInterface.OnRangedAttack;
+            }
+            m_Wrapper.m_AttackActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @MeleeAttack.started += instance.OnMeleeAttack;
+                @MeleeAttack.performed += instance.OnMeleeAttack;
+                @MeleeAttack.canceled += instance.OnMeleeAttack;
+                @RangedAttack.started += instance.OnRangedAttack;
+                @RangedAttack.performed += instance.OnRangedAttack;
+                @RangedAttack.canceled += instance.OnRangedAttack;
+            }
+        }
+    }
+    public AttackActions @Attack => new AttackActions(this);
     private int m_PlayerSchemeIndex = -1;
     public InputControlScheme PlayerScheme
     {
@@ -227,5 +318,10 @@ public class @InputMaster : IInputActionCollection, IDisposable
     {
         void OnUpAndDown(InputAction.CallbackContext context);
         void OnSideways(InputAction.CallbackContext context);
+    }
+    public interface IAttackActions
+    {
+        void OnMeleeAttack(InputAction.CallbackContext context);
+        void OnRangedAttack(InputAction.CallbackContext context);
     }
 }
